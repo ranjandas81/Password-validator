@@ -34,13 +34,13 @@ class PasswordValidatorApplicationTests {
                 .andExpect(status().is4xxClientError());
     }
 
-    
+
     @Test
     void password_validator_mandatory_field_missing() throws Exception {
 
         mvc.perform(MockMvcRequestBuilders.post("/validate").param("inputStr", "TT")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                .andExpect(status().is5xxServerError());
     }
 
 
