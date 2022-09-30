@@ -7,10 +7,11 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import org.springframework.test.web.servlet.result.StatusResultMatchers;
 
+import static com.example.passwordvalidator.constants.ValidationErrorMessageConstants.PASSWORD_SHOULD_CONTAIN_LOWERCASE_LETTER;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -40,6 +41,33 @@ class PasswordValidatorApplicationTests {
     void password_validator_mandatory_field_missing() throws Exception {
 
         mvc.perform(MockMvcRequestBuilders.post("/validate").param("inputStr", "TT")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is5xxServerError());
+
+    }
+
+    @Test
+    void password_validator_missing_required_number_1() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders.post("/validate").param("inputStr", "aa")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is5xxServerError());
+
+    }
+
+    @Test
+    void password_validator_missing_required_number_2() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders.post("/validate").param("inputStr", "aa     ")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is5xxServerError());
+
+    }
+
+    @Test
+    void password_validator_missing_required_number_3() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders.post("/validate").param("inputStr", "aasssss")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is5xxServerError());
 
