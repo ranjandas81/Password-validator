@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PasswordValidatorController {
 
     @PostMapping(value = "validate", produces = {"application/json"})
-    public ResponseEntity<String> validatePassword(@RequestParam(name = "inputStr", required = false) String inputStr) {
+    public ResponseEntity<String> validatePassword(@RequestParam(name = "inputStr", required = true) String inputStr) {
         return new ResponseEntity<>("SUCCESSFUL_VALIDATION_MSG", HttpStatus.OK);
     }
 }
