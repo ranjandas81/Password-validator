@@ -1,4 +1,4 @@
-package com.example.passwordvalidator.resource.service;
+package com.example.passwordvalidator.service;
 
 public interface PasswordValidation {
 

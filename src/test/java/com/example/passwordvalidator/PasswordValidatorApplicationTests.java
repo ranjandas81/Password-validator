@@ -1,14 +1,15 @@
 package com.example.passwordvalidator;
 
-import com.example.passwordvalidator.resource.service.PasswordValidationService;
+import com.example.passwordvalidator.service.PasswordValidationService;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.result.StatusResultMatchers;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -41,8 +42,6 @@ class PasswordValidatorApplicationTests {
         mvc.perform(MockMvcRequestBuilders.post("/validate").param("inputStr", "TT")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is5xxServerError());
+
     }
-
-
-
 }
