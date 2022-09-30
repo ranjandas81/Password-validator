@@ -29,6 +29,39 @@ class PasswordValidatorApplicationTests {
     }
 
     @Test
+    void password_validator_successful() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders.post("/validate").param("inputStr", "abcDsT3")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    void password_validator_successful_1() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders.post("/validate").param("inputStr", "ab9")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    void password_validator_successful_2() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders.post("/validate").param("inputStr", "gtdryweq")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @Test
+    void password_validator_successful_4() throws Exception {
+
+        mvc.perform(MockMvcRequestBuilders.post("/validate").param("inputStr", "TTUQa")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+    }
+
+
+    @Test
     void password_validator_missing_param() throws Exception {
 
         mvc.perform(MockMvcRequestBuilders.post("/validate")
